@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二年級上學期資訊科技-應用技能評量/考試各班抽題結果</title>
+  <!-- 引入 ExcelJS 與 FileSaver，確保原生生成完美合併儲存格、框線、置中對齊的 .xlsx 檔案 -->
+  <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=ajtrA2JzBp79SNT9Fy169rrlM6Ry9jekFfDCoftzLmgjnKTcgYj7DYo3iGyoILenlqO5zxNPAQs9DFS66MUZZaciKTn_sMfbIej1HlIhiAYEiEe3FQZBbKgHohG4nRllBAGO1ZR0ldecVhHAsQzSnMmiJg3S8Ai-030a298XwkbCgBl0AvsnUpYO4_MeFC6v1db1KFAKVscKf1_sUbduw_P5EQpzmk8LYzpb8BxsfFMUCFOQJdXYpkXQSbUXTevTDhRUAWGpgVW0YPIUWMEAcNeNoyr0AW2MraEf8ls3g49VE5x2R927NfTQTZb1V3Kk" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jb250cmlidXRpb24udXNlcmNvbnRlbnQuZ29vZ2xlLmNvbS9kb3dubG9hZD9jPUNneGlZWEprWDNOMGIzSmhaMlVTVUJJTmNtVnpjRzl1YzJWZlpHRjBZUm9fQ2pCaVpXRXdNVGd4TkRKaU1UVmhOR1JtTURBd05qVmtaV1E0TkRoaVptWTFaVEE0WldJM01tUTJZVEF5TWpkaE5qTVNDeElIRU16OHV2NjFDaGdCJmZpbGVuYW1lPWluZGV4Lmh0bWwmb3BpPTEwMzEzNTA1MA"/><script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent-yellow: #facc15;
+      --accent-yellow-hover: #eab308;
+      --border-color: #111827;
+      --bg-page: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1260px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      padding: 32px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* 頂部操作工具列 */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 2px dashed #e2e8f0;
+    }
+
+    .toolbar-left {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      user-select: none;
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+    .btn-secondary:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .btn-export-excel {
+      background: #ecfdf5;
+      color: #047857;
+      border-color: #6ee7b7;
+      font-weight: bold;
+    }
+    .btn-export-excel:hover {
+      background: #d1fae5;
+      border-color: #34d399;
+    }
+
+    .btn-config {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #bfdbfe;
+    }
+    .btn-config:hover {
+      background: #dbeafe;
+    }
+
+    /* 大黃色抽題按鈕 */
+    .btn-lottery {
+      background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+      color: #713f12;
+      font-size: 20px;
+      font-weight: 800;
+      padding: 13px 34px;
+      border-radius: 10px;
+      border: 2px solid #ca8a04;
+      box-shadow: 0 4px 6px -1px rgba(234, 179, 8, 0.3), 0 2px 4px -2px rgba(234, 179, 8, 0.2);
+      transform: translateY(0);
+      cursor: pointer;
+    }
+    .btn-lottery:hover {
+      background: linear-gradient(135deg, #fef08a 0%, #eab308 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px -3px rgba(234, 179, 8, 0.4);
+    }
+    .btn-lottery:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px -1px rgba(234, 179, 8, 0.3);
+    }
+
+    /* 抽題設定面板 */
+    .config-panel {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .config-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+    .config-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #334155;
+    }
+    .config-input {
+      width: 52px;
+      padding: 5px 6px;
+      border: 1.5px solid #94a3b8;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: #0f172a;
+      background: #fff;
+    }
+    .config-input-text {
+      width: 95px;
+      text-align: center;
+      padding: 5px 6px;
+    }
+    .config-input-long {
+      width: 140px;
+      text-align: left;
+      padding: 5px 8px;
+    }
+    .config-input-topic {
+      width: 150px;
+      text-align: center;
+      padding: 5px 8px;
+    }
+    .config-input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    /* 評量標題 */
+    .sheet-title {
+      text-align: center;
+      font-family: "DFKai-SB", "BiauKai", "標楷體", serif;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      color: #111827;
+      padding: 4px;
+      border-radius: 6px;
+      outline: none;
+    }
+    .sheet-title:focus {
+      background: #f1f5f9;
+    }
+
+    /* 表格樣式 - 100% 忠實還原 Excel/WPS */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+
+    table.excel-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      font-family: "DFKai-SB", "BiauKai", "標楷體", "Microsoft JhengHei", serif;
+    }
+
+    table.excel-table th, 
+    table.excel-table td {
+      border: 1px solid var(--border-color);
+      padding: 7px 6px;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .th-class {
+      font-size: 18px;
+      font-weight: bold;
+      background: #f8fafc;
+      height: 38px;
+    }
+
+    .th-col-header {
+      font-size: 16px;
+      background: #f8fafc;
+      height: 34px;
+    }
+
+    .cell-percent {
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      font-size: 20px;
+      font-weight: bold;
+      background: #ffffff;
+      width: 75px;
+      cursor: text;
+    }
+
+    .cell-category {
+      font-size: 18px;
+      font-weight: bold;
+      width: 100px;
+      background: #ffffff;
+      cursor: text;
+    }
+
+    .cell-sub-ratio {
+      font-family: "Times New Roman", "Microsoft JhengHei", sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      background: #ffffff;
+      width: 95px;
+      cursor: text;
+      color: #1e293b;
+    }
+
+    .num-cell {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: #1e293b;
+      height: 38px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .num-cell.rolling {
+      color: #94a3b8;
+      background-color: #f8fafc;
+      transform: scale(0.96);
+    }
+
+    .num-cell.highlight {
+      background-color: #fef9c3;
+      color: #854d0e;
+      font-weight: bold;
+    }
+
+    .op-cell {
+      font-family: "DFKai-SB", "BiauKai", "標楷體", serif;
+      font-size: 17px;
+      cursor: text;
+      background: #fff;
+      transition: background-color 0.2s;
+    }
+    .op-cell:focus {
+      background-color: #eff6ff;
+      outline: none;
+    }
+
+    .side-tip-cell {
+      font-family: "DFKai-SB", "BiauKai", "標楷體", serif;
+      font-size: 17px;
+      font-weight: bold;
+      width: 90px;
+      color: #334155;
+      background: #ffffff;
+      line-height: 1.4;
+    }
+
+    .btn-class-reroll {
+      margin-left: 4px;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      cursor: pointer;
+      color: #64748b;
+      vertical-align: middle;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .btn-class-reroll:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .info-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 18px 22px;
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    .info-card h4 {
+      color: #1e293b;
+      font-size: 15px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 2px;
+    }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-purple { background: #f3e8ff; color: #7e22ce; }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-amber { background: #fef3c7; color: #92400e; }
+
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(15, 23, 42, 0.9);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .toolbar, .config-panel, .btn-class-reroll, .info-card, #toast {
+        display: none !important;
+      }
+      .sheet-title {
+        font-size: 24pt;
+        margin-bottom: 20px;
+      }
+      table.excel-table {
+        border: 2px solid #000;
+      }
+      table.excel-table th, table.excel-table td {
+        border: 1px solid #000;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- 頂部操作工具列 -->
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <button class="btn btn-export-excel" onclick="exportPerfectExcel()">
+          📊 下載各班完整 Excel (.xlsx 包含完整合併儲存格與框線)
+        </button>
+        <button class="btn btn-secondary" onclick="copyTableData()">
+          📋 複製總表 (可直接貼上 Excel)
+        </button>
+        <button class="btn btn-secondary" onclick="window.print()">
+          🖨️ 列印 / 另存 PDF
+        </button>
+        <button class="btn btn-secondary" onclick="clearResults()">
+          🧹 清空
+        </button>
+      </div>
+
+      <button class="btn btn-lottery" id="mainRollBtn" onclick="rollAllClasses()">
+        🎲 點擊抽題 (按 F9 / 空白鍵)
+      </button>
+    </div>
+
+    <!-- 抽題設定面板 -->
+    <div class="config-panel">
+      <!-- 第一行：每個題類佔分比例設置 -->
+      <div class="config-row">
+        <div style="font-weight:800; color:#0f172a;">📊 題類佔分比例設定：</div>
+        
+        <div class="config-group">
+          <span class="badge badge-red">是非題佔分</span>
+          <input type="text" id="tfRatioInput" class="config-input config-input-text" value="24% @8" title="是非題比例">
+        </div>
+
+        <div class="config-group">
+          <span class="badge badge-blue">選擇題佔分</span>
+          <input type="text" id="mcRatioInput" class="config-input config-input-text" value="40% @10" title="選擇題比例">
+        </div>
+
+        <div class="config-group">
+          <span class="badge badge-purple">配對題佔分</span>
+          <input type="text" id="matchRatioInput" class="config-input config-input-text" value="36% @12" title="配對題比例">
+        </div>
+
+        <div class="config-group">
+          <span class="badge badge-green">操作題佔分</span>
+          <input type="text" id="opRatioInput" class="config-input config-input-text" value="PL2評分表" title="操作題評分標籤">
+        </div>
+      </div>
+
+      <!-- 第二行：題數與抽籤範圍設定 -->
+      <div class="config-row">
+        <div style="font-weight:800; color:#0f172a;">⚙️ 題數與抽籤範圍：</div>
+        
+        <div class="config-group">
+          <span class="badge badge-red">是非題</span>
+          抽 <input type="number" id="tfCount" class="config-input" value="3" min="1" max="10"> 題，
+          從 <input type="number" id="tfMin" class="config-input" value="1" min="1" max="99">
+          至 <input type="number" id="tfMax" class="config-input" value="8" min="1" max="99">
+        </div>
+
+        <div class="config-group">
+          <span class="badge badge-blue">選擇題</span>
+          抽 <input type="number" id="mcCount" class="config-input" value="4" min="1" max="10"> 題，
+          從 <input type="number" id="mcMin" class="config-input" value="9" min="1" max="99">
+          至 <input type="number" id="mcMax" class="config-input" value="18" min="1" max="99">
+        </div>
+
+        <div class="config-group">
+          <span class="badge badge-purple">配對題批量題號</span>
+          <input type="text" id="matchNumbersInput" class="config-input config-input-long" value="19, 20, 21" placeholder="例如: 19, 20, 21">
+        </div>
+      </div>
+
+      <!-- 第三行：操作題內容批量修改 -->
+      <div class="config-row">
+        <div style="font-weight:800; color:#0f172a;">🎨 操作題設定：</div>
+        <div class="config-group">
+          <span class="badge badge-amber">操作題內容 (全班批量同步)</span>
+          <input type="text" id="batchOpInput" class="config-input config-input-topic" value="畫小青蛙" placeholder="輸入操作題名稱">
+          <span style="font-size:12px; color:#64748b; font-weight:normal;">(在上方輸入，全班 6 個班級即時連動；或直接在表格內修改任一班)</span>
+        </div>
+
+        <button class="btn btn-config" onclick="applyAndRoll()" style="padding:6px 14px; font-size:13px; margin-left:auto;">
+          🔄 套用設定並重新抽題
+        </button>
+      </div>
+    </div>
+
+    <!-- 標題：二年級上學期資訊科技-應用技能評量/考試各班抽題結果 -->
+    <h1 class="sheet-title" id="mainTitle" contenteditable="true" title="點擊可直接修改標題">
+      二年級上學期資訊科技-應用技能評量/考試各班抽題結果
+    </h1>
+
+    <!-- 核心抽題表格 -->
+    <div class="table-wrapper">
+      <table class="excel-table" id="examTable">
+        <thead>
+          <tr>
+            <th colspan="3" rowspan="2" style="background:#fff; border-bottom:1px solid #111;"></th>
+            <th class="th-class">P2A <button class="btn-class-reroll" onclick="rollSingleClass('P2A')" title="僅重抽此班">↻</button></th>
+            <th class="th-class">P2B <button class="btn-class-reroll" onclick="rollSingleClass('P2B')" title="僅重抽此班">↻</button></th>
+            <th class="th-class">P2C <button class="btn-class-reroll" onclick="rollSingleClass('P2C')" title="僅重抽此班">↻</button></th>
+            <th class="th-class">P2D <button class="btn-class-reroll" onclick="rollSingleClass('P2D')" title="僅重抽此班">↻</button></th>
+            <th class="th-class">P2E <button class="btn-class-reroll" onclick="rollSingleClass('P2E')" title="僅重抽此班">↻</button></th>
+            <th class="th-class">P2F <button class="btn-class-reroll" onclick="rollSingleClass('P2F')" title="僅重抽此班">↻</button></th>
+            <th rowspan="2" class="side-tip-cell" contenteditable="true" title="點擊可修改旁白說明">由下至上<br>開始刪除</th>
+          </tr>
+          <tr>
+            <th class="th-col-header">題號</th>
+            <th class="th-col-header">題號</th>
+            <th class="th-col-header">題號</th>
+            <th class="th-col-header">題號</th>
+            <th class="th-col-header">題號</th>
+            <th class="th-col-header">題號</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 說明卡片 -->
+    <div class="info-card">
+      <h4>📌 系統亮點與使用說明：</h4>
+      <p>1. <b>操作題批量修改（雙向連動）</b>：在上方「操作題內容 (全班批量同步)」輸入框打字，下方 P2A～P2F <b>全班 6 個格子會立刻即時同步修改</b>！也可以在下方表格中直接點擊任意一班打字修改，其他班級會自動同步。</p>
+      <p>2. <b>完美合併儲存格與框線</b>：點擊上方綠色按鈕 <b>「📊 下載各班完整 Excel (.xlsx)」</b>，匯出的 Excel 會原生套用 <b>A1:I1 標題跨欄置中、A4:A13 佔分合併、是非/選擇/配對題合併、J 欄旁白垂直合併以及完整黑色格線</b>（包含 1 個總表與 6 個獨立班級工作表）！</p>
+      <p>3. <b>題號升序與同班不重複</b>：抽題時嚴格保證同班題號不重複，並自動從小到大升序排序；配對題題號全班即時批量同步。</p>
+      <p>4. <b>快速抽題</b>：點擊黃色大按鈕，或按鍵盤 <kbd style="background:#e2e8f0; padding:2px 6px; border-radius:4px; font-weight:bold;">F9</kbd> / <kbd style="background:#e2e8f0; padding:2px 6px; border-radius:4px; font-weight:bold;">空白鍵 (Space)</kbd> 隨時重新抽題。</p>
+    </div>
+  </div>
+
+  <div id="toast">提示訊息</div>
+
+  <script>
+    const CLASSES = ['P2A', 'P2B', 'P2C', 'P2D', 'P2E', 'P2F'];
+    let currentOpTopic = "畫小青蛙";
+
+    function getConfig() {
+      const tfCount = parseInt(document.getElementById('tfCount').value, 10) || 3;
+      const tfMin = parseInt(document.getElementById('tfMin').value, 10) || 1;
+      const tfMax = parseInt(document.getElementById('tfMax').value, 10) || 8;
+
+      const mcCount = parseInt(document.getElementById('mcCount').value, 10) || 4;
+      const mcMin = parseInt(document.getElementById('mcMin').value, 10) || 9;
+      const mcMax = parseInt(document.getElementById('mcMax').value, 10) || 18;
+
+      const tfRatio = document.getElementById('tfRatioInput').value.trim() || '24% @8';
+      const mcRatio = document.getElementById('mcRatioInput').value.trim() || '40% @10';
+      const matchRatio = document.getElementById('matchRatioInput').value.trim() || '36% @12';
+      const opRatio = document.getElementById('opRatioInput').value.trim() || 'PL2評分表';
+
+      const rawMatch = document.getElementById('matchNumbersInput').value.trim();
+      const matchNums = rawMatch.split(/[,，、\s]+/).filter(x => x !== '');
+      if (matchNums.length === 0) {
+        matchNums.push('19', '20', '21');
+      }
+
+      currentOpTopic = document.getElementById('batchOpInput').value.trim() || '畫小青蛙';
+
+      return {
+        tfCount,
+        tfMin: Math.min(tfMin, tfMax),
+        tfMax: Math.max(tfMin, tfMax),
+        mcCount,
+        mcMin: Math.min(mcMin, mcMax),
+        mcMax: Math.max(mcMin, mcMax),
+        tfRatio,
+        mcRatio,
+        matchRatio,
+        opRatio,
+        matchNums,
+        opTopic: currentOpTopic
+      };
+    }
+
+    function rebuildTableStructure() {
+      const config = getConfig();
+      const tbody = document.getElementById('tableBody');
+      const totalTheoryRows = config.tfCount + config.mcCount + config.matchNums.length;
+
+      let html = '';
+
+      // 1. 是非題列
+      for (let i = 0; i < config.tfCount; i++) {
+        html += '<tr>';
+        if (i === 0) {
+          html += `<td rowspan="${totalTheoryRows}" class="cell-percent" id="theoryPercent" contenteditable="true" title="筆試佔分比例">35%</td>`;
+          html += `<td rowspan="${config.tfCount}" class="cell-category" contenteditable="true">是非題</td>`;
+          html += `<td rowspan="${config.tfCount}" class="cell-sub-ratio" id="tfRatioCell" contenteditable="true">${config.tfRatio}</td>`;
+        }
+        CLASSES.forEach(cls => {
+          html += `<td class="num-cell" id="${cls}_tf_${i}">-</td>`;
+        });
+        if (i === 0) {
+          html += `<td rowspan="${totalTheoryRows + 1}" class="side-tip-cell" contenteditable="true">由下至上<br>開始刪除</td>`;
+        }
+        html += '</tr>';
+      }
+
+      // 2. 選擇題列
+      for (let i = 0; i < config.mcCount; i++) {
+        html += '<tr>';
+        if (i === 0) {
+          html += `<td rowspan="${config.mcCount}" class="cell-category" contenteditable="true">選擇題</td>`;
+          html += `<td rowspan="${config.mcCount}" class="cell-sub-ratio" id="mcRatioCell" contenteditable="true">${config.mcRatio}</td>`;
+        }
+        CLASSES.forEach(cls => {
+          html += `<td class="num-cell" id="${cls}_mc_${i}">-</td>`;
+        });
+        html += '</tr>';
+      }
+
+      // 3. 配對題列
+      for (let i = 0; i < config.matchNums.length; i++) {
+        html += '<tr>';
+        if (i === 0) {
+          html += `<td rowspan="${config.matchNums.length}" class="cell-category" contenteditable="true">配對題</td>`;
+          html += `<td rowspan="${config.matchNums.length}" class="cell-sub-ratio" id="matchRatioCell" contenteditable="true">${config.matchRatio}</td>`;
+        }
+        const val = config.matchNums[i];
+        CLASSES.forEach(cls => {
+          html += `<td class="num-cell match-num-${i}">${val}</td>`;
+        });
+        html += '</tr>';
+      }
+
+      // 4. 操作題列
+      html += `<tr>
+        <td class="cell-percent" id="opPercent" contenteditable="true" title="操作題佔分比例">65%</td>
+        <td class="cell-category" contenteditable="true">操作題</td>
+        <td class="cell-sub-ratio" id="opRatioCell" contenteditable="true">${config.opRatio}</td>`;
+      
+      CLASSES.forEach(cls => {
+        html += `<td class="op-cell" contenteditable="true" id="${cls}_op">${config.opTopic}</td>`;
+      });
+
+      html += `</tr>`;
+
+      tbody.innerHTML = html;
+
+      // 監聽表格內操作題打字，並同步所有班級與上方輸入框
+      CLASSES.forEach(cls => {
+        const el = document.getElementById(`${cls}_op`);
+        if (el) {
+          el.addEventListener('input', () => {
+            currentOpTopic = el.innerText.trim();
+            document.getElementById('batchOpInput').value = currentOpTopic;
+            CLASSES.forEach(otherCls => {
+              const otherEl = document.getElementById(`${otherCls}_op`);
+              if (otherEl && otherEl !== el) otherEl.innerText = currentOpTopic;
+            });
+          });
+        }
+      });
+    }
+
+    // 上方批量修改操作題輸入框監聽
+    document.getElementById('batchOpInput').addEventListener('input', (e) => {
+      currentOpTopic = e.target.value;
+      CLASSES.forEach(cls => {
+        const el = document.getElementById(`${cls}_op`);
+        if (el) el.innerText = currentOpTopic;
+      });
+    });
+
+    function pickUniqueSorted(minVal, maxVal, count) {
+      const pool = [];
+      for (let i = minVal; i <= maxVal; i++) {
+        pool.push(i);
+      }
+      
+      if (pool.length < count) {
+        return pool.sort((a, b) => a - b);
+      }
+
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      return pool.slice(0, count).sort((a, b) => a - b);
+    }
+
+    function rollSingleClass(cls, animate = true) {
+      const config = getConfig();
+      const tfResults = pickUniqueSorted(config.tfMin, config.tfMax, config.tfCount);
+      const mcResults = pickUniqueSorted(config.mcMin, config.mcMax, config.mcCount);
+
+      if (!animate) {
+        tfResults.forEach((val, i) => {
+          const el = document.getElementById(`${cls}_tf_${i}`);
+          if (el) el.innerText = val;
+        });
+        mcResults.forEach((val, i) => {
+          const el = document.getElementById(`${cls}_mc_${i}`);
+          if (el) el.innerText = val;
+        });
+        return;
+      }
+
+      let step = 0;
+      const cells = [];
+      for (let i = 0; i < config.tfCount; i++) {
+        const el = document.getElementById(`${cls}_tf_${i}`);
+        if (el) cells.push({ el, min: config.tfMin, max: config.tfMax, target: tfResults[i] });
+      }
+      for (let i = 0; i < config.mcCount; i++) {
+        const el = document.getElementById(`${cls}_mc_${i}`);
+        if (el) cells.push({ el, min: config.mcMin, max: config.mcMax, target: mcResults[i] });
+      }
+
+      cells.forEach(c => c.el.classList.add('rolling'));
+
+      const interval = setInterval(() => {
+        cells.forEach(item => {
+          item.el.innerText = Math.floor(Math.random() * (item.max - item.min + 1)) + item.min;
+        });
+        step++;
+        if (step > 6) {
+          clearInterval(interval);
+          cells.forEach(item => {
+            item.el.innerText = item.target;
+            item.el.classList.remove('rolling');
+            item.el.classList.add('highlight');
+            setTimeout(() => item.el.classList.remove('highlight'), 350);
+          });
+        }
+      }, 35);
+    }
+
+    function rollAllClasses() {
+      CLASSES.forEach((cls, index) => {
+        setTimeout(() => {
+          rollSingleClass(cls, true);
+        }, index * 40);
+      });
+      showToast('🎲 全班抽題完成！題號已由小到大排序');
+    }
+
+    function applyAndRoll() {
+      rebuildTableStructure();
+      rollAllClasses();
+    }
+
+    ['tfRatioInput', 'mcRatioInput', 'matchRatioInput', 'opRatioInput', 'matchNumbersInput'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        rebuildTableStructure();
+        rollAllClasses(false);
+      });
+    });
+
+    function clearResults() {
+      const config = getConfig();
+      CLASSES.forEach(cls => {
+        for (let i = 0; i < config.tfCount; i++) {
+          const el = document.getElementById(`${cls}_tf_${i}`);
+          if (el) el.innerText = '-';
+        }
+        for (let i = 0; i < config.mcCount; i++) {
+          const el = document.getElementById(`${cls}_mc_${i}`);
+          if (el) el.innerText = '-';
+        }
+      });
+      showToast('已清空抽題結果');
+    }
+
+    function copyTableData() {
+      const title = document.getElementById('mainTitle').innerText.trim();
+      const config = getConfig();
+
+      let tsv = title + "\n\n";
+      tsv += "\t\t\t" + CLASSES.join("\t") + "\n";
+      tsv += "\t\t\t" + CLASSES.map(() => "題號").join("\t") + "\n";
+
+      for (let i = 0; i < config.tfCount; i++) {
+        const p1 = (i === 0) ? "35%\t是非題\t" + config.tfRatio : "\t\t";
+        const rowVals = CLASSES.map(cls => document.getElementById(`${cls}_tf_${i}`).innerText).join("\t");
+        tsv += p1 + "\t" + rowVals + "\n";
+      }
+
+      for (let i = 0; i < config.mcCount; i++) {
+        const p1 = (i === 0) ? "\t選擇題\t" + config.mcRatio : "\t\t";
+        const rowVals = CLASSES.map(cls => document.getElementById(`${cls}_mc_${i}`).innerText).join("\t");
+        tsv += p1 + "\t" + rowVals + "\n";
+      }
+
+      for (let i = 0; i < config.matchNums.length; i++) {
+        const p1 = (i === 0) ? "\t配對題\t" + config.matchRatio : "\t\t";
+        const val = config.matchNums[i];
+        const rowVals = CLASSES.map(() => val).join("\t");
+        tsv += p1 + "\t" + rowVals + "\n";
+      }
+
+      tsv += `65%\t操作題\t${config.opRatio}\t` + CLASSES.map(() => currentOpTopic).join("\t") + "\n";
+
+      navigator.clipboard.writeText(tsv).then(() => {
+        showToast('📋 已複製為表格格式！可在 Excel 中按 Ctrl+V 直接貼上');
+      }).catch(() => {
+        showToast('複製失敗，請手動複製');
+      });
+    }
+
+    // ★★★ ExcelJS 匯出原生合併儲存格、置中對齊、完整黑色框線的 Excel ★★★
+    async function exportPerfectExcel() {
+      if (typeof ExcelJS === 'undefined') {
+        alert('ExcelJS 模組載入中，請稍候重試或檢查網路連接。');
+        return;
+      }
+
+      const title = document.getElementById('mainTitle').innerText.trim();
+      const config = getConfig();
+      const totalTheory = config.tfCount + config.mcCount + config.matchNums.length;
+      const lastRow = 3 + totalTheory + 1; // Row 14
+
+      const workbook = new ExcelJS.Workbook();
+
+      const borderThin = {
+        top: { style: 'thin', color: { argb: 'FF000000' } },
+        left: { style: 'thin', color: { argb: 'FF000000' } },
+        bottom: { style: 'thin', color: { argb: 'FF000000' } },
+        right: { style: 'thin', color: { argb: 'FF000000' } }
+      };
+
+      const alignCenter = { vertical: 'middle', horizontal: 'center', wrapText: true };
+      const fontBold = { name: '新細明體', size: 12, bold: true };
+      const fontRegular = { name: '新細明體', size: 12 };
+      const fontNumber = { name: 'Times New Roman', size: 13 };
+      const fontPercent = { name: 'Times New Roman', size: 14, italic: true };
+
+      // ================= 1. 總表：「各班抽題」 =================
+      const wsMain = workbook.addWorksheet('各班抽題', { views: [{ showGridLines: true }] });
+
+      // Title A1:I1
+      wsMain.mergeCells('A1:I1');
+      const cTitle = wsMain.getCell('A1');
+      cTitle.value = title;
+      cTitle.font = { name: '新細明體', size: 18, bold: true };
+      cTitle.alignment = alignCenter;
+
+      wsMain.mergeCells('A2:C3');
+      wsMain.mergeCells(`A4:A${3 + totalTheory}`);
+      wsMain.getCell('A4').value = '35%';
+      wsMain.getCell('A4').font = fontPercent;
+      wsMain.getCell('A4').alignment = alignCenter;
+
+      wsMain.getCell(`A${lastRow}`).value = '65%';
+      wsMain.getCell(`A${lastRow}`).font = fontPercent;
+      wsMain.getCell(`A${lastRow}`).alignment = alignCenter;
+
+      // 是非題
+      const tfEnd = 3 + config.tfCount;
+      wsMain.mergeCells(`B4:B${tfEnd}`);
+      wsMain.getCell('B4').value = '是非題';
+      wsMain.getCell('B4').font = fontBold;
+      wsMain.getCell('B4').alignment = alignCenter;
+
+      wsMain.mergeCells(`C4:C${tfEnd}`);
+      wsMain.getCell('C4').value = config.tfRatio;
+      wsMain.getCell('C4').font = fontBold;
+      wsMain.getCell('C4').alignment = alignCenter;
+
+      // 選擇題
+      const mcStart = tfEnd + 1;
+      const mcEnd = tfEnd + config.mcCount;
+      wsMain.mergeCells(`B${mcStart}:B${mcEnd}`);
+      wsMain.getCell(`B${mcStart}`).value = '選擇題';
+      wsMain.getCell(`B${mcStart}`).font = fontBold;
+      wsMain.getCell(`B${mcStart}`).alignment = alignCenter;
+
+      wsMain.mergeCells(`C${mcStart}:C${mcEnd}`);
+      wsMain.getCell(`C${mcStart}`).value = config.mcRatio;
+      wsMain.getCell(`C${mcStart}`).font = fontBold;
+      wsMain.getCell(`C${mcStart}`).alignment = alignCenter;
+
+      // 配對題
+      const matchStart = mcEnd + 1;
+      const matchEnd = 3 + totalTheory;
+      wsMain.mergeCells(`B${matchStart}:B${matchEnd}`);
+      wsMain.getCell(`B${matchStart}`).value = '配對題';
+      wsMain.getCell(`B${matchStart}`).font = fontBold;
+      wsMain.getCell(`B${matchStart}`).alignment = alignCenter;
+
+      wsMain.mergeCells(`C${matchStart}:C${matchEnd}`);
+      wsMain.getCell(`C${matchStart}`).value = config.matchRatio;
+      wsMain.getCell(`C${matchStart}`).font = fontBold;
+      wsMain.getCell(`C${matchStart}`).alignment = alignCenter;
+
+      // 操作題
+      wsMain.getCell(`B${lastRow}`).value = '操作題';
+      wsMain.getCell(`B${lastRow}`).font = fontBold;
+      wsMain.getCell(`B${lastRow}`).alignment = alignCenter;
+
+      wsMain.getCell(`C${lastRow}`).value = config.opRatio;
+      wsMain.getCell(`C${lastRow}`).font = fontBold;
+      wsMain.getCell(`C${lastRow}`).alignment = alignCenter;
+
+      // J2:J14 旁白合併
+      wsMain.mergeCells(`J2:J${lastRow}`);
+      const cSide = wsMain.getCell('J2');
+      cSide.value = '由下至上\n開始刪除';
+      cSide.font = fontBold;
+      cSide.alignment = alignCenter;
+
+      // Headers for Classes (D2:I2 and D3:I3)
+      CLASSES.forEach((cls, idx) => {
+        const colIndex = 4 + idx; // Col D is 4
+        const cCls = wsMain.getRow(2).getCell(colIndex);
+        cCls.value = cls;
+        cCls.font = fontBold;
+        cCls.alignment = alignCenter;
+
+        const cQ = wsMain.getRow(3).getCell(colIndex);
+        cQ.value = '題號';
+        cQ.font = fontRegular;
+        cQ.alignment = alignCenter;
+
+        for (let i = 0; i < config.tfCount; i++) {
+          const val = parseInt(document.getElementById(`${cls}_tf_${i}`).innerText, 10);
+          const cell = wsMain.getRow(4 + i).getCell(colIndex);
+          cell.value = isNaN(val) ? '-' : val;
+          cell.font = fontNumber;
+          cell.alignment = alignCenter;
+        }
+
+        for (let i = 0; i < config.mcCount; i++) {
+          const val = parseInt(document.getElementById(`${cls}_mc_${i}`).innerText, 10);
+          const cell = wsMain.getRow(mcStart + i).getCell(colIndex);
+          cell.value = isNaN(val) ? '-' : val;
+          cell.font = fontNumber;
+          cell.alignment = alignCenter;
+        }
+
+        for (let i = 0; i < config.matchNums.length; i++) {
+          const val = parseInt(config.matchNums[i], 10);
+          const cell = wsMain.getRow(matchStart + i).getCell(colIndex);
+          cell.value = isNaN(val) ? config.matchNums[i] : val;
+          cell.font = fontNumber;
+          cell.alignment = alignCenter;
+        }
+
+        const cOp = wsMain.getRow(lastRow).getCell(colIndex);
+        cOp.value = currentOpTopic;
+        cOp.font = fontRegular;
+        cOp.alignment = alignCenter;
+      });
+
+      for (let r = 1; r <= lastRow; r++) {
+        const row = wsMain.getRow(r);
+        row.height = (r === 1) ? 36 : 24;
+        for (let c = 1; c <= 10; c++) {
+          if (r === 1 && c > 9) continue;
+          row.getCell(c).border = borderThin;
+        }
+      }
+
+      wsMain.getColumn(1).width = 10;
+      wsMain.getColumn(2).width = 12;
+      wsMain.getColumn(3).width = 14;
+      for (let c = 4; c <= 9; c++) wsMain.getColumn(c).width = 11;
+      wsMain.getColumn(10).width = 14;
+
+      // ================= 2. 各班獨立分頁 (P2A ~ P2F) =================
+      CLASSES.forEach((cls) => {
+        const wsCls = workbook.addWorksheet(cls, { views: [{ showGridLines: true }] });
+
+        wsCls.mergeCells('A1:D1');
+        const ct = wsCls.getCell('A1');
+        ct.value = title;
+        ct.font = { name: '新細明體', size: 18, bold: true };
+        ct.alignment = alignCenter;
+
+        wsCls.mergeCells('A2:C3');
+
+        wsCls.getCell('D2').value = cls;
+        wsCls.getCell('D2').font = fontBold;
+        wsCls.getCell('D2').alignment = alignCenter;
+
+        wsCls.getCell('D3').value = '題號';
+        wsCls.getCell('D3').font = fontRegular;
+        wsCls.getCell('D3').alignment = alignCenter;
+
+        wsCls.mergeCells(`E2:E${lastRow}`);
+        const cSideCls = wsCls.getCell('E2');
+        cSideCls.value = '由下至上\n開始刪除';
+        cSideCls.font = fontBold;
+        cSideCls.alignment = alignCenter;
+
+        wsCls.mergeCells(`A4:A${3 + totalTheory}`);
+        wsCls.getCell('A4').value = '35%';
+        wsCls.getCell('A4').font = fontPercent;
+        wsCls.getCell('A4').alignment = alignCenter;
+
+        wsCls.getCell(`A${lastRow}`).value = '65%';
+        wsCls.getCell(`A${lastRow}`).font = fontPercent;
+        wsCls.getCell(`A${lastRow}`).alignment = alignCenter;
+
+        wsCls.mergeCells(`B4:B${tfEnd}`);
+        wsCls.getCell('B4').value = '是非題';
+        wsCls.getCell('B4').font = fontBold;
+        wsCls.getCell('B4').alignment = alignCenter;
+
+        wsCls.mergeCells(`C4:C${tfEnd}`);
+        wsCls.getCell('C4').value = config.tfRatio;
+        wsCls.getCell('C4').font = fontBold;
+        wsCls.getCell('C4').alignment = alignCenter;
+
+        wsCls.mergeCells(`B${mcStart}:B${mcEnd}`);
+        wsCls.getCell(`B${mcStart}`).value = '選擇題';
+        wsCls.getCell(`B${mcStart}`).font = fontBold;
+        wsCls.getCell(`B${mcStart}`).alignment = alignCenter;
+
+        wsCls.mergeCells(`C${mcStart}:C${mcEnd}`);
+        wsCls.getCell(`C${mcStart}`).value = config.mcRatio;
+        wsCls.getCell(`C${mcStart}`).font = fontBold;
+        wsCls.getCell(`C${mcStart}`).alignment = alignCenter;
+
+        wsCls.mergeCells(`B${matchStart}:B${matchEnd}`);
+        wsCls.getCell(`B${matchStart}`).value = '配對題';
+        wsCls.getCell(`B${matchStart}`).font = fontBold;
+        wsCls.getCell(`B${matchStart}`).alignment = alignCenter;
+
+        wsCls.mergeCells(`C${matchStart}:C${matchEnd}`);
+        wsCls.getCell(`C${matchStart}`).value = config.matchRatio;
+        wsCls.getCell(`C${matchStart}`).font = fontBold;
+        wsCls.getCell(`C${matchStart}`).alignment = alignCenter;
+
+        wsCls.getCell(`B${lastRow}`).value = '操作題';
+        wsCls.getCell(`B${lastRow}`).font = fontBold;
+        wsCls.getCell(`B${lastRow}`).alignment = alignCenter;
+
+        wsCls.getCell(`C${lastRow}`).value = config.opRatio;
+        wsCls.getCell(`C${lastRow}`).font = fontBold;
+        wsCls.getCell(`C${lastRow}`).alignment = alignCenter;
+
+        for (let i = 0; i < config.tfCount; i++) {
+          const val = parseInt(document.getElementById(`${cls}_tf_${i}`).innerText, 10);
+          const cell = wsCls.getRow(4 + i).getCell(4);
+          cell.value = isNaN(val) ? '-' : val;
+          cell.font = fontNumber;
+          cell.alignment = alignCenter;
+        }
+
+        for (let i = 0; i < config.mcCount; i++) {
+          const val = parseInt(document.getElementById(`${cls}_mc_${i}`).innerText, 10);
+          const cell = wsCls.getRow(mcStart + i).getCell(4);
+          cell.value = isNaN(val) ? '-' : val;
+          cell.font = fontNumber;
+          cell.alignment = alignCenter;
+        }
+
+        for (let i = 0; i < config.matchNums.length; i++) {
+          const val = parseInt(config.matchNums[i], 10);
+          const cell = wsCls.getRow(matchStart + i).getCell(4);
+          cell.value = isNaN(val) ? config.matchNums[i] : val;
+          cell.font = fontNumber;
+          cell.alignment = alignCenter;
+        }
+
+        const cOp = wsCls.getRow(lastRow).getCell(4);
+        cOp.value = currentOpTopic;
+        cOp.font = fontRegular;
+        cOp.alignment = alignCenter;
+
+        for (let r = 1; r <= lastRow; r++) {
+          const row = wsCls.getRow(r);
+          row.height = (r === 1) ? 36 : 24;
+          for (let c = 1; c <= 5; c++) {
+            if (r === 1 && c > 4) continue;
+            row.getCell(c).border = borderThin;
+          }
+        }
+
+        wsCls.getColumn(1).width = 10;
+        wsCls.getColumn(2).width = 12;
+        wsCls.getColumn(3).width = 14;
+        wsCls.getColumn(4).width = 14;
+        wsCls.getColumn(5).width = 14;
+      });
+
+      const buffer = await workbook.xlsx.writeBuffer();
+      const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      saveAs(blob, `${title}.xlsx`);
+      showToast('🎉 已成功生成並下載包含完美合併儲存格與框線的 Excel 活頁簿！');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.target.isContentEditable || e.target.tagName === 'INPUT') return;
+
+      if (e.key === 'F9' || e.code === 'Space') {
+        e.preventDefault();
+        rollAllClasses();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      rebuildTableStructure();
+      rollAllClasses();
+    });
+  </script>
+</body>
+</html>
